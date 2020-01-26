@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<!-- saved from url=(0034)http://tldp.org/LDP/lpg/node7.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>6 Linux Interprocess Communications</title>
+<meta name="description" content="6 Linux Interprocess Communications">
+<meta name="keywords" content="lpg">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<link rel="STYLESHEET" href="./6 Linux Interprocess Communications_files/lpg.css">
+</head>
+<body lang="EN">
+ <a name="tex2html358" href="http://tldp.org/LDP/lpg/node8.html"><img width="37" height="24" align="BOTTOM" alt="next" src="./6 Linux Interprocess Communications_files/next_motif.gif"></a> <a name="tex2html356" href="http://tldp.org/LDP/lpg/lpg.html"><img width="26" height="24" align="BOTTOM" alt="up" src="./6 Linux Interprocess Communications_files/up_motif.gif"></a> <a name="tex2html350" href="http://tldp.org/LDP/lpg/node6.html"><img width="63" height="24" align="BOTTOM" alt="previous" src="./6 Linux Interprocess Communications_files/previous_motif.gif"></a> <a name="tex2html360" href="http://tldp.org/LDP/lpg/node1.html"><img width="65" height="24" align="BOTTOM" alt="contents" src="./6 Linux Interprocess Communications_files/contents_motif.gif"></a>  <br>
+<b> Next:</b> <a name="tex2html359" href="http://tldp.org/LDP/lpg/node8.html">6.1 Introduction</a>
+<b>Up:</b> <a name="tex2html357" href="http://tldp.org/LDP/lpg/lpg.html">e</a>
+<b> Previous:</b> <a name="tex2html351" href="http://tldp.org/LDP/lpg/node6.html">5 The ``swiss army </a>
+<br> <p>
+<a name="scott">&nbsp;</a></p><h1><a name="SECTION00700000000000000000">6 Linux Interprocess Communications</a></h1>
+<p>
+</p><h3 class="ABSTRACT">Abstract:</h3>
+<p class="ABSTRACT">A detailed overview of the IPC (interprocess communication facilities) facilities
+implemented in the Linux Operating System.</p><p>
+</p><p>
+<br> </p><hr>
+<ul> 
+<li> <a name="tex2html361" href="http://tldp.org/LDP/lpg/node8.html#SECTION00710000000000000000">6.1 Introduction</a>
+</li><li> <a name="tex2html362" href="http://tldp.org/LDP/lpg/node9.html#SECTION00720000000000000000">6.2 Half-duplex UNIX Pipes</a>
+<ul> 
+<li> <a name="tex2html363" href="http://tldp.org/LDP/lpg/node10.html#SECTION00721000000000000000">6.2.1 Basic Concepts</a>
+</li><li> <a name="tex2html364" href="http://tldp.org/LDP/lpg/node11.html#SECTION00722000000000000000">6.2.2 Creating Pipes in C</a>
+</li><li> <a name="tex2html365" href="http://tldp.org/LDP/lpg/node12.html#SECTION00723000000000000000">6.2.3 Pipes the Easy Way!</a>
+</li><li> <a name="tex2html366" href="http://tldp.org/LDP/lpg/node13.html#SECTION00724000000000000000">6.2.4 Atomic Operations with Pipes</a>
+</li><li> <a name="tex2html367" href="http://tldp.org/LDP/lpg/node14.html#SECTION00725000000000000000">6.2.5 Notes on half-duplex pipes:</a>
+</li></ul> 
+</li><li> <a name="tex2html368" href="http://tldp.org/LDP/lpg/node15.html#SECTION00730000000000000000">6.3 Named Pipes (FIFOs - First In First Out)</a>
+<ul> 
+<li> <a name="tex2html369" href="http://tldp.org/LDP/lpg/node16.html#SECTION00731000000000000000">6.3.1 Basic Concepts</a>
+</li><li> <a name="tex2html370" href="http://tldp.org/LDP/lpg/node17.html#SECTION00732000000000000000">6.3.2 Creating a FIFO</a>
+</li><li> <a name="tex2html371" href="http://tldp.org/LDP/lpg/node18.html#SECTION00733000000000000000">6.3.3 FIFO Operations</a>
+</li><li> <a name="tex2html372" href="http://tldp.org/LDP/lpg/node19.html#SECTION00734000000000000000">6.3.4 Blocking Actions on a FIFO</a>
+</li><li> <a name="tex2html373" href="http://tldp.org/LDP/lpg/node20.html#SECTION00735000000000000000">6.3.5 The Infamous SIGPIPE Signal</a>
+</li></ul> 
+</li><li> <a name="tex2html374" href="http://tldp.org/LDP/lpg/node21.html#SECTION00740000000000000000">6.4 System V IPC</a>
+<ul> 
+<li> <a name="tex2html375" href="http://tldp.org/LDP/lpg/node22.html#SECTION00741000000000000000">6.4.1 Fundamental Concepts</a>
+<ul> 
+<li> <a name="tex2html376" href="http://tldp.org/LDP/lpg/node23.html#SECTION00741100000000000000">IPC Identifiers</a>
+</li><li> <a name="tex2html377" href="http://tldp.org/LDP/lpg/node24.html#SECTION00741200000000000000">IPC Keys</a>
+</li><li> <a name="tex2html378" href="http://tldp.org/LDP/lpg/node25.html#SECTION00741300000000000000">The <tt>ipcs</tt> Command</a>
+</li><li> <a name="tex2html379" href="http://tldp.org/LDP/lpg/node26.html#SECTION00741400000000000000">The <tt>ipcrm</tt> Command</a>
+</li></ul> 
+</li><li> <a name="tex2html380" href="http://tldp.org/LDP/lpg/node27.html#SECTION00742000000000000000">6.4.2 Message Queues</a>
+<ul> 
+<li> <a name="tex2html381" href="http://tldp.org/LDP/lpg/node28.html#SECTION00742100000000000000">Basic Concepts</a>
+</li><li> <a name="tex2html382" href="http://tldp.org/LDP/lpg/node29.html#SECTION00742200000000000000">Internal and User Data Structures</a>
+<ul> 
+<li> <a name="tex2html383" href="http://tldp.org/LDP/lpg/node30.html#SECTION00742210000000000000">Message buffer</a>
+</li><li> <a name="tex2html384" href="http://tldp.org/LDP/lpg/node31.html#SECTION00742220000000000000">Kernel <tt>msg</tt> structure</a>
+</li><li> <a name="tex2html385" href="http://tldp.org/LDP/lpg/node32.html#SECTION00742230000000000000">Kernel <tt>msqid_ds</tt> structure</a>
+</li><li> <a name="tex2html386" href="http://tldp.org/LDP/lpg/node33.html#SECTION00742240000000000000">Kernel <tt>ipc_perm</tt> structure</a>
+</li></ul> 
+</li><li> <a name="tex2html387" href="http://tldp.org/LDP/lpg/node34.html#SECTION00742300000000000000">SYSTEM CALL: msgget()</a>
+</li><li> <a name="tex2html388" href="http://tldp.org/LDP/lpg/node35.html#SECTION00742400000000000000">SYSTEM CALL: msgsnd()</a>
+</li><li> <a name="tex2html389" href="http://tldp.org/LDP/lpg/node36.html#SECTION00742500000000000000">SYSTEM CALL: msgctl()</a>
+</li><li> <a name="tex2html390" href="http://tldp.org/LDP/lpg/node37.html#SECTION00742600000000000000">msgtool: An interactive message queue manipulator</a>
+<ul> 
+<li> <a name="tex2html391" href="http://tldp.org/LDP/lpg/node38.html#SECTION00742610000000000000">Background</a>
+</li><li> <a name="tex2html392" href="http://tldp.org/LDP/lpg/node39.html#SECTION00742620000000000000">Command Line Syntax</a>
+</li><li> <a name="tex2html393" href="http://tldp.org/LDP/lpg/node44.html#SECTION00742630000000000000">Examples</a>
+</li><li> <a name="tex2html394" href="http://tldp.org/LDP/lpg/node45.html#SECTION00742640000000000000">The Source</a>
+</li></ul> 
+</li></ul> 
+</li><li> <a name="tex2html395" href="http://tldp.org/LDP/lpg/node46.html#SECTION00743000000000000000">6.4.3 Semaphores</a>
+<ul> 
+<li> <a name="tex2html396" href="http://tldp.org/LDP/lpg/node47.html#SECTION00743100000000000000">Basic Concepts</a>
+</li><li> <a name="tex2html397" href="http://tldp.org/LDP/lpg/node48.html#SECTION00743200000000000000">Internal Data Structures</a>
+<ul> 
+<li> <a name="tex2html398" href="http://tldp.org/LDP/lpg/node49.html#SECTION00743210000000000000">Kernel <tt>semid_ds</tt> structure</a>
+</li><li> <a name="tex2html399" href="http://tldp.org/LDP/lpg/node50.html#SECTION00743220000000000000">Kernel <tt>sem</tt> structure</a>
+</li></ul> 
+</li><li> <a name="tex2html400" href="http://tldp.org/LDP/lpg/node51.html#SECTION00743300000000000000">SYSTEM CALL: semget()</a>
+</li><li> <a name="tex2html401" href="http://tldp.org/LDP/lpg/node52.html#SECTION00743400000000000000">SYSTEM CALL: semop()</a>
+</li><li> <a name="tex2html402" href="http://tldp.org/LDP/lpg/node53.html#SECTION00743500000000000000">SYSTEM CALL: semctl()</a>
+</li><li> <a name="tex2html403" href="http://tldp.org/LDP/lpg/node54.html#SECTION00743600000000000000">semtool: An interactive semaphore manipulator</a>
+<ul> 
+<li> <a name="tex2html404" href="http://tldp.org/LDP/lpg/node55.html#SECTION00743610000000000000">Background</a>
+</li><li> <a name="tex2html405" href="http://tldp.org/LDP/lpg/node56.html#SECTION00743620000000000000">Command Line Syntax</a>
+</li><li> <a name="tex2html406" href="http://tldp.org/LDP/lpg/node62.html#SECTION00743630000000000000">Examples</a>
+</li><li> <a name="tex2html407" href="http://tldp.org/LDP/lpg/node63.html#SECTION00743640000000000000">The Source</a>
+</li></ul> 
+</li><li> <a name="tex2html408" href="http://tldp.org/LDP/lpg/node64.html#SECTION00743700000000000000">semstat: A semtool companion program</a>
+</li></ul> 
+</li><li> <a name="tex2html409" href="http://tldp.org/LDP/lpg/node65.html#SECTION00744000000000000000">6.4.4 Shared Memory</a>
+<ul> 
+<li> <a name="tex2html410" href="http://tldp.org/LDP/lpg/node66.html#SECTION00744100000000000000">Basic Concepts</a>
+</li><li> <a name="tex2html411" href="http://tldp.org/LDP/lpg/node67.html#SECTION00744200000000000000">Internal and User Data Structures</a>
+<ul> 
+<li> <a name="tex2html412" href="http://tldp.org/LDP/lpg/node68.html#SECTION00744210000000000000">Kernel <tt>shmid_ds</tt> structure</a>
+</li></ul> 
+</li><li> <a name="tex2html413" href="http://tldp.org/LDP/lpg/node69.html#SECTION00744300000000000000">SYSTEM CALL: shmget()</a>
+</li><li> <a name="tex2html414" href="http://tldp.org/LDP/lpg/node70.html#SECTION00744400000000000000">SYSTEM CALL: shmat()</a>
+</li><li> <a name="tex2html415" href="http://tldp.org/LDP/lpg/node71.html#SECTION00744500000000000000">SYSTEM CALL: shmctl()</a>
+</li><li> <a name="tex2html416" href="http://tldp.org/LDP/lpg/node72.html#SECTION00744600000000000000">SYSTEM CALL: shmdt()</a>
+</li><li> <a name="tex2html417" href="http://tldp.org/LDP/lpg/node73.html#SECTION00744700000000000000">shmtool: An interactive shared memory manipulator</a>
+<ul> 
+<li> <a name="tex2html418" href="http://tldp.org/LDP/lpg/node74.html#SECTION00744710000000000000">Background</a>
+</li><li> <a name="tex2html419" href="http://tldp.org/LDP/lpg/node75.html#SECTION00744720000000000000">Command Line Syntax</a>
+</li><li> <a name="tex2html420" href="http://tldp.org/LDP/lpg/node80.html#SECTION00744730000000000000">Examples</a>
+</li><li> <a name="tex2html421" href="http://tldp.org/LDP/lpg/node81.html#SECTION00744740000000000000">The Source</a>
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<br> <hr>
+<p></p><address>
+<i>Converted on: <br>
+Fri Mar 29 14:43:04 EST 1996</i>
+</address>
+
+
+<div id="uvpn_rate_us">            <div class="uvpn_wrap">                <div class="uvpn_logo-ext">                    <div class="uvpn_logo-wrap">                        <img src="chrome-extension://gpieacagdjdfbifodokiccinpbacemjf/img/128.png">                    </div>                </div>                <div class="uvpn_title">                    Don’t Forget to Rate Us                </div>                <div class="uvpn_desc">                    If you enjoy our product, give us 5 stars. It helps so much!                </div>                <div class="stars">                    <svg xmlns="http://www.w3.org/2000/svg" width="1235" height="1175" viewBox="0 0 1235 1175">                        <path fill="#cf6218" d="M0,449h1235l-999,726 382-1175 382,1175z"></path>                    </svg>                    <svg xmlns="http://www.w3.org/2000/svg" width="1235" height="1175" viewBox="0 0 1235 1175">                        <path fill="#cf6218" d="M0,449h1235l-999,726 382-1175 382,1175z"></path>                    </svg>                    <svg xmlns="http://www.w3.org/2000/svg" width="1235" height="1175" viewBox="0 0 1235 1175">                        <path fill="#cf6218" d="M0,449h1235l-999,726 382-1175 382,1175z"></path>                    </svg>                    <svg xmlns="http://www.w3.org/2000/svg" width="1235" height="1175" viewBox="0 0 1235 1175">                        <path fill="#cf6218" d="M0,449h1235l-999,726 382-1175 382,1175z"></path>                    </svg>                    <svg xmlns="http://www.w3.org/2000/svg" width="1235" height="1175" viewBox="0 0 1235 1175">                        <path fill="#cf6218" d="M0,449h1235l-999,726 382-1175 382,1175z"></path>                    </svg>                </div>                <a target="_blank" href="https://chrome.google.com/webstore/detail/uvpn-free-and-unlimited-v/gpieacagdjdfbifodokiccinpbacemjf/reviews" id="rate_btn_rateus" class="uvpn_rate-btn uvpn_btn">                    Rate Us                </a>                <div id="close_btn_rateus" class="uvpn_later-btn uvpn_btn">                    Not Now                </div>            </div>        </div></body></html>
